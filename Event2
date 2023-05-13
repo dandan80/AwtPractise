@@ -1,0 +1,64 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.Box;
+
+public class Number {
+
+    public static void main(String args[]) {   
+    	
+    	Frame frame = new Frame("This is a test Listener");
+    	
+    	frame.addWindowListener(new WindowAdapter() {
+    		public void windowClosing(WindowEvent e) {
+    			System.out.println("System quit");
+    			System.exit(0);
+    			
+    		}
+    	});
+    	
+    	TextField tf = new TextField(30);
+    	
+    	Choice names = new Choice();
+    	names.add("Allan");
+    	names.add("Tom");
+    	names.add("Cole");
+        
+    	tf.addTextListener(new TextListener() {
+    		
+    		public void textValueChanged(TextEvent e) {
+    			String text = tf.getText();
+    			System.out.println("Content in text window: "+ text);
+    		}
+    	});
+    	
+    	names.addItemListener(new ItemListener() {
+    		
+    		public void itemStateChanged(ItemEvent e) {
+    			Object item = e.getItem();
+    			System.out.println("Content in item choice: "+ item);
+    		}
+    	});
+    	
+    	
+    	frame.addContainerListener(new ContainerListener() {
+    		
+    		public void componentAdded(ContainerEvent e) {
+    			Component child = e.getChild();
+    			System.out.println("Added new component in windows: "+child);
+    		}
+    		
+    		public void componentRemoved(ContainerEvent e) {
+    			Component child = e.getChild();
+    			System.out.println("Removed new component in windows: "+child);
+    		}
+    			});
+    	 	
+    	Box hBox = Box.createHorizontalBox();
+    	hBox.add(names);
+    	hBox.add(tf);
+    	frame.add(hBox);
+    	
+    	frame.pack();
+    	frame.setVisible(true);   	
+    }
+}
