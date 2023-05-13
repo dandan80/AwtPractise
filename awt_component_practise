@@ -1,0 +1,64 @@
+import java.awt.*;
+
+import javax.swing.Box;
+
+
+public class Number {
+	
+	Frame frame = new Frame("This is basic component test for Aws");
+	
+	TextArea ta = new TextArea(5,20);
+	Choice colorChoice = new Choice();
+	
+	CheckboxGroup cbg = new CheckboxGroup();
+	Checkbox male = new Checkbox("Male",cbg, true);
+	Checkbox female = new Checkbox("Female",cbg, true);
+	
+	Checkbox isMarried = new Checkbox("Is married?");
+	
+	TextField tf = new TextField(50);
+	Button ok = new Button("Ok");
+	
+	List colorlist = new List(6,true);
+	
+	public void init() {
+		
+		//bottom box
+		Box bBox = Box.createHorizontalBox();
+		bBox.add(tf);
+		bBox.add(ok);
+		
+		frame.add(bBox, BorderLayout.SOUTH);
+		
+		// top left-bottom box
+		colorChoice.add("Red");
+		colorChoice.add("Green");
+		colorChoice.add("Blue");
+		
+		Box cBox = Box.createHorizontalBox();
+		cBox.add(colorChoice);
+		cBox.add(male);
+		cBox.add(female);
+		cBox.add(isMarried);
+		
+		Box topLeft = Box.createVerticalBox();
+		topLeft.add(ta);
+		topLeft.add(cBox);
+		
+		colorlist.add("Red");
+		colorlist.add("Green");
+		colorlist.add("Blue");
+		
+		Box top= Box.createHorizontalBox();
+		top.add(topLeft);
+		top.add(colorlist);
+
+		frame.add(top);
+		frame.pack();
+		frame.setVisible(true);
+	}
+	
+    public static void main(String args[]) {   	
+    	new Number().init();
+    }
+}
