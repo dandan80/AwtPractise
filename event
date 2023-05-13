@@ -1,0 +1,42 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Box;
+
+public class Number {
+	
+	Frame frame = new Frame("This is a practise of Event");
+	
+	TextField tf = new TextField(30);
+	
+	//Event Source
+	Button ok = new Button("OK");
+	
+	
+	public void init() {
+
+		//Event Listener
+		MyListener myListener = new MyListener();
+		
+		//Register Event Listener
+		ok.addActionListener(myListener);
+		
+		frame.add(tf, BorderLayout.NORTH);
+		frame.add(ok);
+		
+		frame.pack();
+		frame.setVisible(true);
+	}
+	
+	private class MyListener implements ActionListener{
+		@override
+		public void actionPerformed(ActionEvent e) {
+			tf.setText("Hello World");
+		}
+	}
+
+    public static void main(String args[]) {   	
+    	new Number().init();
+    }
+}
