@@ -1,0 +1,57 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.Box;
+
+public class Number {
+
+    private Frame frame = new Frame("This is a test about menu component");
+    
+    //create menu bar
+    MenuBar menuBar = new MenuBar();
+    
+    //create menu
+    Menu fileMenu = new Menu("file");
+    Menu editMenu = new Menu("edit");
+    Menu formatMenu = new Menu("format");
+    
+    //create menu item
+    MenuItem auto = new MenuItem("auto new line");
+    MenuItem copy = new MenuItem("copy");
+    MenuItem paste = new MenuItem("paste");
+    
+    MenuItem comment = new MenuItem("comment",new MenuShortcut(KeyEvent.VK_Q, true) );
+    MenuItem cancelComment = new MenuItem("cancel comment");
+    
+    TextArea ta = new TextArea(6,40);
+    
+    
+    public void init() {
+    	
+    	comment.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent e) {
+    			ta.append(e.getActionCommand());
+    		}
+    	});
+    	
+    	formatMenu.add(comment);
+    	formatMenu.add(cancelComment);
+    	
+    	editMenu.add(auto);
+    	editMenu.add(copy);
+    	editMenu.add(paste);
+    	editMenu.add(formatMenu);
+    	
+    	menuBar.add(fileMenu);
+    	menuBar.add(editMenu);
+    	
+    	frame.setMenuBar(menuBar);
+    	
+    	frame.add(ta);
+    	frame.pack();
+    	frame.setVisible(true);
+    }
+    
+    public static void main(String [] args) {
+    	new Number().init();
+    }
+}
